@@ -10,12 +10,12 @@ import pickle
 import requests
 
 # load the nlp model and tfidf vectorizer from disk
-filename = 'nlp_model.pkl'
+filename = 'https://github.com/KhalPrawira/Movie_Recomendation_ISmile_TuBes/raw/refs/heads/main/nlp_model.pkl'
 clf = pickle.load(open(filename, 'rb'))
-vectorizer = pickle.load(open('tranform.pkl','rb'))
+vectorizer = pickle.load(open('https://github.com/KhalPrawira/Movie_Recomendation_ISmile_TuBes/raw/refs/heads/main/tranform.pkl','rb'))
 
 def create_similarity():
-    data = pd.read_csv('main_data.csv')
+    data = pd.read_csv('https://github.com/KhalPrawira/Movie_Recomendation_ISmile_TuBes/raw/refs/heads/main/Datasets/main_data.csv')
     # creating a count matrix
     cv = CountVectorizer()
     count_matrix = cv.fit_transform(data['comb'])
@@ -54,7 +54,7 @@ def convert_to_list(my_list):
 
 # to get suggestions of movies
 def get_suggestions():
-    data = pd.read_csv('main_data.csv')
+    data = pd.read_csv('https://github.com/KhalPrawira/Movie_Recomendation_ISmile_TuBes/raw/refs/heads/main/Datasets/main_data.csv')
     return list(data['movie_title'].str.capitalize())
 
 # Flask API
@@ -65,7 +65,7 @@ app = Flask(__name__)
 @app.route("/home")
 def home():
     suggestions = get_suggestions()
-    return render_template('home.html',suggestions=suggestions)
+    return render_template('https://github.com/KhalPrawira/Movie_Recomendation_ISmile_TuBes/raw/refs/heads/main/templates/home.html',suggestions=suggestions)
 
 @app.route("/similarity",methods=["POST"])
 def similarity():
@@ -149,7 +149,7 @@ def recommend():
     movie_reviews = {reviews_list[i]: reviews_status[i] for i in range(len(reviews_list))}     
 
     # passing all the data to the html file
-    return render_template('recommend.html',title=title,poster=poster,overview=overview,vote_average=vote_average,
+    return render_template('https://github.com/KhalPrawira/Movie_Recomendation_ISmile_TuBes/raw/refs/heads/main/templates/recommend.html',title=title,poster=poster,overview=overview,vote_average=vote_average,
         vote_count=vote_count,release_date=release_date,runtime=runtime,status=status,genres=genres,
         movie_cards=movie_cards,reviews=movie_reviews,casts=casts,cast_details=cast_details)
 
